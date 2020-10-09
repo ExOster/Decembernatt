@@ -32,6 +32,8 @@ def Rörelse():
     
 Rörelse()
 
+Hej Hej
+
 
 
  
