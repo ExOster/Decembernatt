@@ -13,9 +13,6 @@ def splash():
     print("| |__| ||  __/| (__|  __/| | | | | || |_) ||  __/| |   | | | || (_| || |_ | |_ ")
     print("|_____/  \___| \___|\___||_| |_| |_||_.__/  \___||_|   |_| |_| \__,_| \__| \__|")
 
-print (splash()) 
-print ("Välkommen till Decembernatt", name())
-
 def choosePath():
     path = ""
     while path != "vänster" and path != "höger" and path != "bakåt" and path != "framåt":
@@ -28,16 +25,27 @@ path = choosePath()
 def Rörelse():
     sleep(1)
     print ("Du går ", path)
+
+class Hero:
+    Health = 10
+
+huvud_karaktär = Hero()
+
+#Rörelse()
+#print (splash()) 
+#print ("Välkommen till Decembernatt", name())
+
+
+print(huvud_karaktär.Health)
+
     
-    
-Rörelse()
 
 
 
 
 
- HAHAHAHA
 
+ 
 
 
 
