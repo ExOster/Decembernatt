@@ -111,8 +111,50 @@ elif val_1 == "framåt":
     elif val_5 == "bakåt":
         print("Du springer tillbaks till Nationen")
     elif val_5 == "stanna":
-        print("123")
-#DO STRID AGAINST Råtta
+        print("En tunn figur träder fram ur skuggorna. Figuren tar gestalten av en gammal kvinna.")
+        print("Kvinnan har krokig rygg, hennes skrovliga ansikte tycks olikt det av en människa och huden tycks obeskrivigt torr i det dunkla skenet.")
+        print("Nästan som att den skulle brista vin minsta beröring.")
+        print ("Med en klar och stark röst olikt dina förväntningar tar kvinnan till orda. Hon säger, lös min gåta och ta del av belöningen: ")
+        print("")
+        svargåta1 = ""
+        n=0
+        förmångaförsök = False
+        while svargåta1 != "n":
+            svargåta1 = input("Med vad börjar natten och slutar dagen? Du har 3 försök(_): ")
+            n += 1
+            if n > 3:
+                förmångaförsök = True
+                break
+        else :
+            print("")
+            print("Utmärkt unge man! Här är din belöning")
+            print("")
+            sleep(2)
+            print ("Gumman sträcker fram en underlig glasflaska med en klar röd, svagt skimrande vätska inuti. Flaskan är förseglad med en kork som mörknat.")
+            print("")
+            sleep(2)
+            val_6 = input (" Vill du dricka innehållet i flaskan eller inte? (ja/nej): ")
+            if val_6 == "ja" :
+                print ("")
+                #GE 10 HP ALBIN
+                print("")
+            elif val_6 == "nej" :
+                print ("Du litar inte på innehållet och slänger flaskan i första bästa soptunna.")
+                print("")
+                sleep(2)
+
+        if förmångaförsök == True :
+            print("Bättre lycka nästa gång! Svaret var n!")
+
+        print ("Den underliga figuren ger dig en sista blick innan du försvinner bort runt nästa huskrök. Du går nu på en gata som leder dig bort mot din lägenhet.")
+        val_7= input("Vill du fortsätta framåt? (ja/nej): ")
+        if val_7 == "ja":
+            print("Snyggt! Smart beslut! Du ville ju gå hem!")
+        elif val_7 == "nej":
+            print("Varför inte? Du ville ju gå hem! Du går hemåt ändå...")
+            print("")
+            sleep(2)
+        print("Mot dig på trotoaren kommer en annan student! Hon kollar lurigt på dig.")
 
 
 
