@@ -118,13 +118,21 @@ elif val_1 == "framåt":
 
 
 
+
+
+
+
+
 def clear():
     print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
 class Hero:
-    health = 10
-    attack_Damage = 1
-    armor = 3
-
+    name = "You"
+    max_health = 30
+    health = 30
+    attack_Damage = 3
+    armor = 1
+    healing = 10
+    
     def take_damage(self,damage):
         self.health -= damage
         return self.health
@@ -136,10 +144,20 @@ class Hero:
             print("GAME OVER NOOBA")
             exit()
 
-class Foes:
-    health = 10
-    attack_Damage = 5
-    armor = 3
+class Anka:
+    name = "Anka"
+    health = 15
+    attack_Damage = 2
+    armor = 1
+
+    def take_damage(self,damage):
+        self.health -= damage
+        return self.health
+class Student_Goons:
+    name = "Student Goons"
+    health = 20
+    attack_Damage = 3
+    armor = 1
 
     def take_damage(self,damage):
         self.health -= damage
@@ -147,31 +165,54 @@ class Foes:
 
     
 def combat_hud(char):
+    print(char.name)
     print(" __________________")
-    print(f"| Health Points: {char.health}| \n| Attack Damage: {char.attack_Damage} | \n| Jacket Armor: {char.armor}  | ")
-    print("|__________________|")
+    print(f" Health Points: {char.health} \n Attack Damage: {char.attack_Damage}  \n Defense: {char.armor}   ")
+    print(" __________________")
 
-def combat(hero,enemy):
+def combat(hero,enemy,enemy_prompt):
     val = ""
-
+    clear()
     while enemy.health > 0:
         combat_hud(hero)
         combat_hud(enemy)
         hero.options()
+        dmg_taken_hero_calc = 0
+        dmg_taken_enemy_calc = 0
+        
         val = input("Choose action: ")
         if val == "1":
             if randint(0,1) == 1:
-                enemy.take_damage(2*hero.attack_Damage)
+                dmg_taken_enemy_calc = 2*hero.attack_Damage-enemy.armor
+                enemy.take_damage(dmg_taken_enemy_calc)
             else:
-                enemy.take_damage(hero.attack_Damage)
+                dmg_taken_enemy_calc = hero.attack_Damage-enemy.armor
+                enemy.take_damage(dmg_taken_enemy_calc)
+                
+        elif val == "2":
+            if hero.max_health - hero.health <= hero.healing:
+                Healprompt = "Du healar till max hp"
+                hero.health = hero.max_health
+            else:
+                hero.health += hero.healing
+                Healprompt = f"du healar upp ditt hp med {hero.healing}"
         ### Enemies time to hit back (can fix so it can do special attacks if time is left over.
         if randint(1,3) == 3:
-            hero.take_damage(enemy.attack_Damage*2)
+            dmg_taken_hero_calc = enemy.attack_Damage*2-hero.armor
+            hero.take_damage(dmg_taken_hero_calc)
         else:
-            hero.take_damage(enemy.attack_Damage)
+            dmg_taken_hero_calc = enemy.attack_Damage-hero.armor
+            hero.take_damage(dmg_taken_hero_calc)
         hero.check_dead()
             
         clear()
+        
+        if val =="1":
+            print(f"Du anfaller och gör {dmg_taken_enemy_calc} skada!")
+        elif val == "2":
+            print(Healprompt)
+        print(f"\n{enemy_prompt} för {dmg_taken_hero_calc} skada!")
+    clear()
     print(f"You won the fight! holy poggers")
 #name()
 #path = choosePath()
@@ -180,8 +221,12 @@ def combat(hero,enemy):
 #print ("Välkommen till Decembernatt", name())
 
 huvud_karaktär = Hero()
-monster = Foes()
+anka1 = Anka()
+student_goons1 = Student_Goons()
 
-combat(huvud_karaktär,monster)
+combat(huvud_karaktär,anka1,"Ankan biter dig på smalbenet!")
+
+combat(huvud_karaktär,student_goons1,"Studenterna hoppar på dig")
+
 
     
