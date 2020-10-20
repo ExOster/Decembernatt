@@ -219,6 +219,7 @@ def kapitel_2():
     print("Du kommer till en korsning i vägen.") #"fortsätt här"
     print("")
     sleep(2)
+<<<<<<< HEAD
     print("Snabbaste vägen hem är att ta den mindre stigen igenom skogen till höger, men den är inte upplyst! Den asfalterande vägen till vänster är större och upplyst men tar längre tid.")
     print("")
     sleep(2)
@@ -277,6 +278,67 @@ elif val_1 == "framåt":
 
 
 #DO STRID AGAINST Råtta
+=======
+    val_5 = input("Du ser en skugga röra sig i mörkret. Vad gör du? Chansa och spring förbi hotet, stå på dig och möt hotet, eller vänder du om? (framåt/bakåt/stanna/): ")
+    if val_5 == "framåt":
+        print("Du snubblar till och slår huvudet på gatstenen")
+        print(GO)
+    elif val_5 == "bakåt":
+        print("Du springer tillbaks till Nationen")
+    elif val_5 == "stanna":
+        print("En tunn figur träder fram ur skuggorna. Figuren tar gestalten av en gammal kvinna.")
+        print("Kvinnan har krokig rygg, hennes skrovliga ansikte tycks olikt det av en människa och huden tycks obeskrivigt torr i det dunkla skenet.")
+        print("Nästan som att den skulle brista vin minsta beröring.")
+        print ("Med en klar och stark röst olikt dina förväntningar tar kvinnan till orda. Hon säger, lös min gåta och ta del av belöningen: ")
+        print("")
+        svargåta1 = ""
+        n=0
+        förmångaförsök = False
+        while svargåta1 != "n":
+            svargåta1 = input("Med vad börjar natten och slutar dagen? Du har 3 försök(_): ")
+            n += 1
+            if n > 3:
+                förmångaförsök = True
+                break
+        else :
+            print("")
+            print("Utmärkt unge man! Här är din belöning")
+            print("")
+            sleep(2)
+            print ("Gumman sträcker fram en underlig glasflaska med en klar röd, svagt skimrande vätska inuti. Flaskan är förseglad med en kork som mörknat.")
+            print("")
+            sleep(2)
+            val_6 = input (" Vill du dricka innehållet i flaskan eller inte? (ja/nej): ")
+            if val_6 == "ja" :
+                print ("")
+                #GE 10 HP ALBIN
+                print("")
+            elif val_6 == "nej" :
+                print ("Du litar inte på innehållet och slänger flaskan i första bästa soptunna.")
+                print("")
+                sleep(2)
+
+        if förmångaförsök == True :
+            print("Bättre lycka nästa gång! Svaret var n!")
+
+        print ("Den underliga figuren ger dig en sista blick innan du försvinner bort runt nästa huskrök. Du går nu på en gata som leder dig bort mot din lägenhet.")
+        val_7= input("Vill du fortsätta framåt? (ja/nej): ")
+        if val_7 == "ja":
+            print("Snyggt! Smart beslut! Du ville ju gå hem!")
+        elif val_7 == "nej":
+            print("Varför inte? Du ville ju gå hem! Du går hemåt ändå...")
+            print("")
+            sleep(2)
+        print("Mot dig på trotoaren kommer en annan student! Hon kollar lurigt på dig.")
+
+
+
+
+
+
+
+
+>>>>>>> e842e60712e2b2829f731422fb2298a80c9b2e67
 
 
 
@@ -285,10 +347,13 @@ elif val_1 == "framåt":
 def clear():
     print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
 class Hero:
-    health = 10
-    attack_Damage = 1
-    armor = 3
-
+    name = "You"
+    max_health = 30
+    health = 30
+    attack_Damage = 3
+    armor = 1
+    healing = 10
+    
     def take_damage(self,damage):
         self.health -= damage
         return self.health
@@ -300,10 +365,20 @@ class Hero:
             print("GAME OVER NOOBA")
             exit()
 
-class Foes:
-    health = 10
-    attack_Damage = 5
-    armor = 3
+class Anka:
+    name = "Anka"
+    health = 15
+    attack_Damage = 2
+    armor = 1
+
+    def take_damage(self,damage):
+        self.health -= damage
+        return self.health
+class Student_Goons:
+    name = "Student Goons"
+    health = 20
+    attack_Damage = 3
+    armor = 1
 
     def take_damage(self,damage):
         self.health -= damage
@@ -311,31 +386,54 @@ class Foes:
 
     
 def combat_hud(char):
+    print(char.name)
     print(" __________________")
-    print(f"| Health Points: {char.health}| \n| Attack Damage: {char.attack_Damage} | \n| Jacket Armor: {char.armor}  | ")
-    print("|__________________|")
+    print(f" Health Points: {char.health} \n Attack Damage: {char.attack_Damage}  \n Defense: {char.armor}   ")
+    print(" __________________")
 
-def combat(hero,enemy):
+def combat(hero,enemy,enemy_prompt):
     val = ""
-
+    clear()
     while enemy.health > 0:
         combat_hud(hero)
         combat_hud(enemy)
         hero.options()
+        dmg_taken_hero_calc = 0
+        dmg_taken_enemy_calc = 0
+        
         val = input("Choose action: ")
         if val == "1":
             if randint(0,1) == 1:
-                enemy.take_damage(2*hero.attack_Damage)
+                dmg_taken_enemy_calc = 2*hero.attack_Damage-enemy.armor
+                enemy.take_damage(dmg_taken_enemy_calc)
             else:
-                enemy.take_damage(hero.attack_Damage)
+                dmg_taken_enemy_calc = hero.attack_Damage-enemy.armor
+                enemy.take_damage(dmg_taken_enemy_calc)
+                
+        elif val == "2":
+            if hero.max_health - hero.health <= hero.healing:
+                Healprompt = "Du healar till max hp"
+                hero.health = hero.max_health
+            else:
+                hero.health += hero.healing
+                Healprompt = f"du healar upp ditt hp med {hero.healing}"
         ### Enemies time to hit back (can fix so it can do special attacks if time is left over.
         if randint(1,3) == 3:
-            hero.take_damage(enemy.attack_Damage*2)
+            dmg_taken_hero_calc = enemy.attack_Damage*2-hero.armor
+            hero.take_damage(dmg_taken_hero_calc)
         else:
-            hero.take_damage(enemy.attack_Damage)
+            dmg_taken_hero_calc = enemy.attack_Damage-hero.armor
+            hero.take_damage(dmg_taken_hero_calc)
         hero.check_dead()
             
         clear()
+        
+        if val =="1":
+            print(f"Du anfaller och gör {dmg_taken_enemy_calc} skada!")
+        elif val == "2":
+            print(Healprompt)
+        print(f"\n{enemy_prompt} för {dmg_taken_hero_calc} skada!")
+    clear()
     print(f"You won the fight! holy poggers")
 #name()
 #path = choosePath()
@@ -344,6 +442,7 @@ def combat(hero,enemy):
 #print ("Välkommen till Decembernatt", name())
 
 huvud_karaktär = Hero()
+<<<<<<< HEAD
 monster = Foes()
 
 combat(huvud_karaktär,monster)
@@ -375,7 +474,14 @@ combat(huvud_karaktär,monster)
 
 
 
+=======
+anka1 = Anka()
+student_goons1 = Student_Goons()
+>>>>>>> e842e60712e2b2829f731422fb2298a80c9b2e67
+
+combat(huvud_karaktär,anka1,"Ankan biter dig på smalbenet!")
+
+combat(huvud_karaktär,student_goons1,"Studenterna hoppar på dig")
 
 
-
-
+    
