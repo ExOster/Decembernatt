@@ -1,7 +1,7 @@
 from random import *
 from time import *
 from sys import *
-from winsound import Beep
+
 
 def Intro_prolog():
     print(" _____                               _                                _    _   ") 
@@ -51,28 +51,10 @@ def Game_over():
     print("   ██╔██╗  ██╔██╗     ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      ██║   ██║╚██╗ ██╔╝██╔══╝  ██╔══██╗     ██╔██╗  ██╔██╗  ")
     print("  ██╔╝ ██╗██╔╝ ██╗    ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝ ╚████╔╝ ███████╗██║  ██║    ██╔╝ ██╗██╔╝ ██╗ ")
     print("  ╚═╝  ╚═╝╚═╝  ╚═╝     ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝    ╚═╝  ╚═╝╚═╝  ╚═╝ ")
-    Beep(440 ,500)
-    Beep(440, 500)
-    Beep(440, 500)
-    Beep(349, 350)
-    Beep(523, 150)
-    Beep(440, 500)
-    Beep(349, 350)
-    Beep(523, 150)
-    Beep(440, 1000)
-    Beep(659, 500)
-    Beep(659, 500)
-    Beep(659, 500)
-    Beep(698, 350)
-    Beep(523, 150)
-    Beep(415, 500)
-    Beep(349, 350)
-    Beep(523, 150)
-    Beep(440, 1000)
-                                                                                                                  
+                                                                                       
                                                                                                   
 
-def Del_1(val_1):
+def Del_1(val_1,Hero):
     if val_1 == "höger":
         print("")
         sleep(2)
@@ -102,7 +84,15 @@ def Del_1(val_1):
                 sleep(2)
                 print("")
                 print("ATTACK")
-                #DO STRID AGAINST ANKA if förlust=GO VINST=REWARD, REWARD SKATEBOARD? borde sen printa val från "fortsätt här"
+                anka1 = Anka()
+                combat(Hero,anka1,"Ankan biter dig på smalbenet!")
+                sleep(2)
+                clear()
+                print("Efter striden med ankan hittar du en skateboard liggandes! Du plockar upp den, man vet aldrig när man kan behöva") 
+                print("en sådan! (+1 attack och kanske någon annan fördel??).")
+                Hero.attack_Damage += 1
+                input("press any key to continue")
+                
             elif val_3 == "höger": #randomise attack ändå?
                 sleep(2)
                 print("")
@@ -110,7 +100,7 @@ def Del_1(val_1):
                 sleep(2)
 
                 
-def Del_2():
+def Del_2(Hero):
     sleep(2)
     print("")
     print("Du går in i den mörka gränden, en oroskänsla sprider sig i dig som du rör dig framåt.")
@@ -165,7 +155,10 @@ def Del_2():
             val_6 = input (" Vill du dricka innehållet i flaskan eller inte? (ja/nej): ")
             if val_6 == "ja" :
                 print ("")
-                #GE 10 HP ALBIN
+                Hero.max_health +=10
+                Hero.health +=10
+                print("Health increased by 10!")
+                print(Hero.max_health)
                 print("")
             elif val_6 == "nej" :
                 print ("Du litar inte på innehållet och slänger flaskan i första bästa soptunna.")
@@ -200,12 +193,16 @@ def Del_2():
                 sleep(2)
                 print("Soptunnelocket liknar en sköld och du känner dig plötsligt starkare.")
                 #Ge lite Armour Albin
+                Hero.armor +=1
+                print("armor increased by 1!")
             else :
                 val_8 = input("vad sägs om en Spexstrid? (ja/nej): ")
                 if val_8 == "ja" :
                     print("")
                     sleep(2)
                     print ("abc")
+                    spex_krigare1 = Spex_krigare()
+                    combat(Hero,spex_krigare1,"Spexkrigaren slår dig hårt med sitt ballongsvärd!")
                     #Do strid against spexkrigare
                 elif val_8 == "nej" :
                     print("")
@@ -219,7 +216,7 @@ def kapitel_2():
     print("Du kommer till en korsning i vägen.") #"fortsätt här"
     print("")
     sleep(2)
-<<<<<<< HEAD
+
     print("Snabbaste vägen hem är att ta den mindre stigen igenom skogen till höger, men den är inte upplyst! Den asfalterande vägen till vänster är större och upplyst men tar längre tid.")
     print("")
     sleep(2)
@@ -236,112 +233,19 @@ def kapitel_2():
             print ("Du försöker fly men studenterna omringar dig och uppmanar dig att anta utmaningen om spexstrid")
         elif val_5 == "strid" :
             print("strid")
+            student_goons1 = Student_Goons()
+            combat(Hero,student_goons1,"Studenterna turas om att slå dig!")
             #DO STRID AGAINST GOONS
-     elif val_4 == 
+     
 
 ######## Chapter 2
 
 
 ##### chapter 3
 
-                
-#Spelkoden börjar
-
-# print("Formatet på spelet är sådant att du endast kommer svara med små bokstäver dvs: RÄTT=abc apa, gris, FEL=ABC, Apa, Gris. DETTA ÄR EN VIKTIG ASPEKT AV SPELET!")
-# print("Ofta ges tips på vad svaret borde vara i en ruta med formatet (svar1/svar2) ibland kommer vi vilja ha ett input från dig.")
-# print("Det kan se ut såhär: skriv ditt namn (______ efternamn) svaret skall då vara ditt namn, tillexempel, tomas med små bokstäver!")
-# print("")
-# sleep(6)
-username = input("Vad är ditt namn: ")
-print("")
-print ("Välkommen",username)
-print("")
-nation = input("Vilken Studentnation vill du spela för ( _____ nation) ")
-print("")
-print (nation)
-print("")
-startgame = input("Starta Spelet? (ja/nej) ")
-#if startgame == "ja":
-#  print (Intro_prolog())  
-    
-#else:
-#    print ("OK, Bye")
-
-                
-val_1 = input ("Till höger ser du en upplyst trottoar, och rakt fram en mörk gränd. Vilket håll vill du gå åt? (framåt/höger): ")
-if val_1 == "höger":
-    Del_1(val_1)
-    
-elif val_1 == "framåt":
-    Del_2()
-
-
-
-#DO STRID AGAINST Råtta
-=======
-    val_5 = input("Du ser en skugga röra sig i mörkret. Vad gör du? Chansa och spring förbi hotet, stå på dig och möt hotet, eller vänder du om? (framåt/bakåt/stanna/): ")
-    if val_5 == "framåt":
-        print("Du snubblar till och slår huvudet på gatstenen")
-        print(GO)
-    elif val_5 == "bakåt":
-        print("Du springer tillbaks till Nationen")
-    elif val_5 == "stanna":
-        print("En tunn figur träder fram ur skuggorna. Figuren tar gestalten av en gammal kvinna.")
-        print("Kvinnan har krokig rygg, hennes skrovliga ansikte tycks olikt det av en människa och huden tycks obeskrivigt torr i det dunkla skenet.")
-        print("Nästan som att den skulle brista vin minsta beröring.")
-        print ("Med en klar och stark röst olikt dina förväntningar tar kvinnan till orda. Hon säger, lös min gåta och ta del av belöningen: ")
-        print("")
-        svargåta1 = ""
-        n=0
-        förmångaförsök = False
-        while svargåta1 != "n":
-            svargåta1 = input("Med vad börjar natten och slutar dagen? Du har 3 försök(_): ")
-            n += 1
-            if n > 3:
-                förmångaförsök = True
-                break
-        else :
-            print("")
-            print("Utmärkt unge man! Här är din belöning")
-            print("")
-            sleep(2)
-            print ("Gumman sträcker fram en underlig glasflaska med en klar röd, svagt skimrande vätska inuti. Flaskan är förseglad med en kork som mörknat.")
-            print("")
-            sleep(2)
-            val_6 = input (" Vill du dricka innehållet i flaskan eller inte? (ja/nej): ")
-            if val_6 == "ja" :
-                print ("")
-                #GE 10 HP ALBIN
-                print("")
-            elif val_6 == "nej" :
-                print ("Du litar inte på innehållet och slänger flaskan i första bästa soptunna.")
-                print("")
-                sleep(2)
-
-        if förmångaförsök == True :
-            print("Bättre lycka nästa gång! Svaret var n!")
-
-        print ("Den underliga figuren ger dig en sista blick innan du försvinner bort runt nästa huskrök. Du går nu på en gata som leder dig bort mot din lägenhet.")
-        val_7= input("Vill du fortsätta framåt? (ja/nej): ")
-        if val_7 == "ja":
-            print("Snyggt! Smart beslut! Du ville ju gå hem!")
-        elif val_7 == "nej":
-            print("Varför inte? Du ville ju gå hem! Du går hemåt ändå...")
-            print("")
-            sleep(2)
-        print("Mot dig på trotoaren kommer en annan student! Hon kollar lurigt på dig.")
-
-
-
-
-
-
-
-
->>>>>>> e842e60712e2b2829f731422fb2298a80c9b2e67
-
-
-
+###
+### Combat CODE!
+###
 
 
 def clear():
@@ -384,6 +288,17 @@ class Student_Goons:
         self.health -= damage
         return self.health
 
+class Spex_krigare:
+    name = "Spex Krigare"
+    health = 25
+    attack_Damage = 3
+    armor = 1
+
+    def take_damage(self,damage):
+        self.health -= damage
+        return self.health
+
+    
     
 def combat_hud(char):
     print(char.name)
@@ -435,53 +350,116 @@ def combat(hero,enemy,enemy_prompt):
         print(f"\n{enemy_prompt} för {dmg_taken_hero_calc} skada!")
     clear()
     print(f"You won the fight! holy poggers")
-#name()
-#path = choosePath()
-#Rörelse()
-#print (splash()) 
-#print ("Välkommen till Decembernatt", name())
+
+    
+
+#combat(huvud_karaktär,monster)
+
+
+
+
+
+
+                
+#Spelkoden börjar
+
+# print("Formatet på spelet är sådant att du endast kommer svara med små bokstäver dvs: RÄTT=abc apa, gris, FEL=ABC, Apa, Gris. DETTA ÄR EN VIKTIG ASPEKT AV SPELET!")
+# print("Ofta ges tips på vad svaret borde vara i en ruta med formatet (svar1/svar2) ibland kommer vi vilja ha ett input från dig.")
+# print("Det kan se ut såhär: skriv ditt namn (______ efternamn) svaret skall då vara ditt namn, tillexempel, tomas med små bokstäver!")
+# print("")
+# sleep(6)
 
 huvud_karaktär = Hero()
-<<<<<<< HEAD
-monster = Foes()
-
-combat(huvud_karaktär,monster)
 
 
+
+username = input("Vad är ditt namn: ")
+print("")
+print ("Välkommen",username)
+print("")
+nation = input("Vilken Studentnation vill du spela för ( _____ nation) ")
+print("")
+print (nation)
+print("")
+startgame = input("Starta Spelet? (ja/nej) ")
+#if startgame == "ja":
+#  print (Intro_prolog())  
+    
+#else:
+#    print ("OK, Bye")
+
+                
+val_1 = input ("Till höger ser du en upplyst trottoar, och rakt fram en mörk gränd. Vilket håll vill du gå åt? (framåt/höger): ")
+if val_1 == "höger":
+    Del_1(val_1,huvud_karaktär)
+    
+elif val_1 == "framåt":
+    Del_2(huvud_karaktär)
+
+
+
+#DO STRID AGAINST Råtta
+
+    val_5 = input("Du ser en skugga röra sig i mörkret. Vad gör du? Chansa och spring förbi hotet, stå på dig och möt hotet, eller vänder du om? (framåt/bakåt/stanna/): ")
+    if val_5 == "framåt":
+        print("Du snubblar till och slår huvudet på gatstenen")
+        Game_over()
+    elif val_5 == "bakåt":
+        print("Du springer tillbaks till Nationen")
+    elif val_5 == "stanna":
+        print("En tunn figur träder fram ur skuggorna. Figuren tar gestalten av en gammal kvinna.")
+        print("Kvinnan har krokig rygg, hennes skrovliga ansikte tycks olikt det av en människa och huden tycks obeskrivigt torr i det dunkla skenet.")
+        print("Nästan som att den skulle brista vin minsta beröring.")
+        print ("Med en klar och stark röst olikt dina förväntningar tar kvinnan till orda. Hon säger, lös min gåta och ta del av belöningen: ")
+        print("")
+        svargåta1 = ""
+        n=0
+        förmångaförsök = False
+        while svargåta1 != "n":
+            svargåta1 = input("Med vad börjar natten och slutar dagen? Du har 3 försök(_): ")
+            n += 1
+            if n > 3:
+                förmångaförsök = True
+                break
+        else :
+            print("")
+            print("Utmärkt unge man! Här är din belöning")
+            print("")
+            sleep(2)
+            print ("Gumman sträcker fram en underlig glasflaska med en klar röd, svagt skimrande vätska inuti. Flaskan är förseglad med en kork som mörknat.")
+            print("")
+            sleep(2)
+            val_6 = input (" Vill du dricka innehållet i flaskan eller inte? (ja/nej): ")
+            if val_6 == "ja" :
+                print ("")
+                #GE 10 HP ALBIN
+                print("")
+            elif val_6 == "nej" :
+                print ("Du litar inte på innehållet och slänger flaskan i första bästa soptunna.")
+                print("")
+                sleep(2)
+
+        if förmångaförsök == True :
+            print("Bättre lycka nästa gång! Svaret var n!")
+
+        print ("Den underliga figuren ger dig en sista blick innan du försvinner bort runt nästa huskrök. Du går nu på en gata som leder dig bort mot din lägenhet.")
+        val_7= input("Vill du fortsätta framåt? (ja/nej): ")
+        if val_7 == "ja":
+            print("Snyggt! Smart beslut! Du ville ju gå hem!")
+        elif val_7 == "nej":
+            print("Varför inte? Du ville ju gå hem! Du går hemåt ändå...")
+            print("")
+            sleep(2)
+        print("Mot dig på trotoaren kommer en annan student! Hon kollar lurigt på dig.")
 
 
  
 
 
 
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-=======
-anka1 = Anka()
-student_goons1 = Student_Goons()
->>>>>>> e842e60712e2b2829f731422fb2298a80c9b2e67
-
-combat(huvud_karaktär,anka1,"Ankan biter dig på smalbenet!")
-
-combat(huvud_karaktär,student_goons1,"Studenterna hoppar på dig")
+#anka1 = Anka()
+#student_goons1 = Student_Goons()
+#combat(huvud_karaktär,student_goons1,"Studenterna hoppar på dig")
 
 
     
