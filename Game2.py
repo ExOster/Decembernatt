@@ -211,17 +211,15 @@ def Del_2(Hero):
         
             print("Du går fundersamt gatan fram och funderar på det skumma mötet med studenten.")
         
-        
-def kapitel_2():    
+def kapitel_2(Hero):    
     print("Du kommer till en korsning i vägen.") #"fortsätt här"
     print("")
     sleep(2)
-
     print("Snabbaste vägen hem är att ta den mindre stigen igenom skogen till höger, men den är inte upplyst! Den asfalterande vägen till vänster är större och upplyst men tar längre tid.")
     print("")
     sleep(2)
-    val_4 = input("Tar du vänster eller höger? (höger/vänster): ")
-    if val_4 == "höger":
+    val_4 = input("Tar du vänster eller rakt fram? (framåt/vänster): ")
+    if val_4 == "framåt":
         print("")
         sleep(2)
         print("Du tar stigen igenom skogen. Halvvägs igenom skogen ser du 3 personer med ov-ar närma sig.")
@@ -232,11 +230,83 @@ def kapitel_2():
             sleep(2)
             print ("Du försöker fly men studenterna omringar dig och uppmanar dig att anta utmaningen om spexstrid")
         elif val_5 == "strid" :
-            print("strid")
             student_goons1 = Student_Goons()
             combat(Hero,student_goons1,"Studenterna turas om att slå dig!")
             #DO STRID AGAINST GOONS
-     
+    elif val_4 == "vänster" :
+        print("")
+        sleep(2)
+        print("Du går längs med den väl upplysta vägen runt den skog som du annars hade korsat.")
+        print("")
+        sleep(2)
+        print("Under en gatlyckta en bit fram ser du vad som ser ut att vara en tant.")
+        print("")
+        sleep(2)
+        print("Kvinnan har en märklig uppsyn, hennes ansikt tycks hårdnat, torrt och skrovligt.")
+        print("")
+        sleep(2)
+        print("Som att det är många hundra år. I det dunkla skenet från gatlycktan ser hon nästintill dammig ut.")
+        print("")
+        sleep(2)
+        print("Tanten känns obeskrivligt bekant. Hon stirrar på dig som du närmar dig på den kyliga asfalten")
+        print("")
+        sleep(2)
+        print("Hon utbrister i en klar och stark stämma som du är på väg att gå förbi henne!..")
+        print("")
+        sleep(2)
+        print("Vill du vara så vänlig och svara på min gåta så skall jag belöna dig rikigt unge hern!")
+        print("")
+        sleep(2)
+        svargåta2 = ""
+        n=0
+        förmångaförsök2 = False
+        while svargåta2 != "trappan":
+            svargåta2 = input("Vad går upp och ner utan att röra på sig? Du har 3 försök att gissa rätt...(_._._._._._._): ")
+            n += 1
+            if n > 2:
+                förmångaförsök2 = True
+                break
+        else :
+            print("")
+            sleep(2)
+            print("Bra jobbat min vän, för dina besvär skall du ha en påse guldpengar!")
+            print("")
+            sleep(2)
+            print("gumman sträcker över en skinnsäck men något tungt innuti.")
+            print("")
+            sleep(2)
+            print("Du tar emot säcken och tackar gumman som när du några steg senare vänder dig om för att ge en sista blick är bort!")
+
+        if förmångaförsök2 == True :
+            print("Bättre lycka nästa gång min vän")
+        print("")
+        sleep(2)
+        print("Du går vidare och kommer fram till punkten där den snabbare skogsvägen möter din. Nu är det nära hem.")
+        print("")
+        sleep(2)
+        print("Du ser nu din lägenhetsport i fjärran. Ett leende sprider sig på dina läppar.")
+        print("")
+        sleep(2)
+        print("Du rör dig mot den lilla fyrkantiga dörren som växer och växer som du kommer närmare")
+        print("")
+        sleep(2)
+        print("Men plötsligtkänner du skugga falla över dig. Håret i nacken reser sig och du känner en iskall blixt ståla längsmed ryggraden.")
+        print("")
+        sleep(2)
+        print("Du får en akut känsla av att något eller någon övervakar dig.")
+        print("")
+        sleep(2)
+        val_9 = input("Vad gör du? Bryt ut i spurt och ta dig till säkerheten av lägenhetsporten, eller vänder du dig om och möter hotet som du misstänker är dig tätt i hälarna. (framåt/stanna): ")
+        if val_9 == stanna :
+            print("Du vänder dig om och med ens känner du hur mörkret sluter sig kring dig. Ett motstötande dödskrik urskiljer ur tystnaden, och ökar i intencitet tills det är olidligt högt")
+            print("Du känner hur benen sviker  dig och du faller ner på knä. Mörkret är nu tatalt och du känner dig trött. Skallbenet krasar när det träffar trotoarkanten.")
+            Game_over()
+            return
+        elif val_9 == framåt:
+            print("Du sprintar mot lägenhetsdörren och kastar dig innanför den skyddande dörren som slår igen med en duns.")
+            print ("GRATTIS DU HAR KLARAT SPELET!")
+            sleep(5)       
+
 
 ######## Chapter 2
 
@@ -395,66 +465,6 @@ if val_1 == "höger":
     
 elif val_1 == "framåt":
     Del_2(huvud_karaktär)
-
-
-
-#DO STRID AGAINST Råtta
-
-    val_5 = input("Du ser en skugga röra sig i mörkret. Vad gör du? Chansa och spring förbi hotet, stå på dig och möt hotet, eller vänder du om? (framåt/bakåt/stanna/): ")
-    if val_5 == "framåt":
-        print("Du snubblar till och slår huvudet på gatstenen")
-        Game_over()
-    elif val_5 == "bakåt":
-        print("Du springer tillbaks till Nationen")
-    elif val_5 == "stanna":
-        print("En tunn figur träder fram ur skuggorna. Figuren tar gestalten av en gammal kvinna.")
-        print("Kvinnan har krokig rygg, hennes skrovliga ansikte tycks olikt det av en människa och huden tycks obeskrivigt torr i det dunkla skenet.")
-        print("Nästan som att den skulle brista vin minsta beröring.")
-        print ("Med en klar och stark röst olikt dina förväntningar tar kvinnan till orda. Hon säger, lös min gåta och ta del av belöningen: ")
-        print("")
-        svargåta1 = ""
-        n=0
-        förmångaförsök = False
-        while svargåta1 != "n":
-            svargåta1 = input("Med vad börjar natten och slutar dagen? Du har 3 försök(_): ")
-            n += 1
-            if n > 3:
-                förmångaförsök = True
-                break
-        else :
-            print("")
-            print("Utmärkt unge man! Här är din belöning")
-            print("")
-            sleep(2)
-            print ("Gumman sträcker fram en underlig glasflaska med en klar röd, svagt skimrande vätska inuti. Flaskan är förseglad med en kork som mörknat.")
-            print("")
-            sleep(2)
-            val_6 = input (" Vill du dricka innehållet i flaskan eller inte? (ja/nej): ")
-            if val_6 == "ja" :
-                print ("")
-                #GE 10 HP ALBIN
-                print("")
-            elif val_6 == "nej" :
-                print ("Du litar inte på innehållet och slänger flaskan i första bästa soptunna.")
-                print("")
-                sleep(2)
-
-        if förmångaförsök == True :
-            print("Bättre lycka nästa gång! Svaret var n!")
-
-        print ("Den underliga figuren ger dig en sista blick innan du försvinner bort runt nästa huskrök. Du går nu på en gata som leder dig bort mot din lägenhet.")
-        val_7= input("Vill du fortsätta framåt? (ja/nej): ")
-        if val_7 == "ja":
-            print("Snyggt! Smart beslut! Du ville ju gå hem!")
-        elif val_7 == "nej":
-            print("Varför inte? Du ville ju gå hem! Du går hemåt ändå...")
-            print("")
-            sleep(2)
-        print("Mot dig på trotoaren kommer en annan student! Hon kollar lurigt på dig.")
-
-
- 
-
 
 
 #anka1 = Anka()
